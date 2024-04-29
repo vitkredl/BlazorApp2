@@ -1,0 +1,35 @@
+﻿@page "/SVG"
+<PageTitle>Animace</PageTitle>
+
+<div class="my-2">
+    <button class="btn btn-primary" @onclick="AddObject">Přidej obrazec</button>
+    <button class="btn btn-warning">Odebrat obrazec</button>
+</div>
+
+<svg width="@SvgWIdth" height="@SvgHeight" xmlns="http://www.w3.org/2000/svg" style="border: 2px solid black">
+    @foreach (var item in SvgObjectList)
+    {
+        switch (item)
+        {
+            case Objects.Obdelnik obdelnik:
+                <rect width="@obdelnik.StranaA" height="@obdelnik.StranaB" x="@obdelnik.XPosition" y="@obdelnik.YPosition" rx="20" ry="20"
+                      style="fill:rgb(@obdelnik.ColorObject.R, @obdelnik.ColorObject.G, @obdelnik.ColorObject.B);stroke-width:5" />
+                break;
+            case Objects.Ctverec ctverec:
+                <rect width="@ctverec.StranaA" height="@ctverec.StranaA" x="@ctverec.XPosition" y="@ctverec.YPosition" rx="20" ry="20"
+                      style="fill:rgb(@ctverec.ColorObject.R, @ctverec.ColorObject.G, @ctverec.ColorObject.B);stroke-width:5" />
+                break;
+            case Objects.Kruh kruh:
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <circle r="@kruh.Polomer" cx="@kruh.XPosition" cy="@kruh.YPosition" fill="rgb(@kruh.ColorObject.R, @kruh.ColorObject.G, @kruh.ColorObject.B" stroke="rgb(@kruh.ColorObject.R, @kruh.ColorObject.G, @kruh.ColorObject.B" stroke-width="3" opacity="0.5" />
+                </svg>
+                break;
+            
+        }
+    }
+    
+</svg>
+
+@code {
+
+}
